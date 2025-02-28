@@ -1,0 +1,5 @@
+/scripts
+/src
+.gitignore
+tsconfig.json
+package-lock.json

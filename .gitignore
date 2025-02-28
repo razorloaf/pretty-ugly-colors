@@ -1,0 +1,4 @@
+dist
+*.css
+node_modules
+*.log
