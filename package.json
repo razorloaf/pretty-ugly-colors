@@ -1,9 +1,9 @@
 {
     "name": "@razorloaf/pretty-ugly-colors",
-    "author": "Josh H, j-o.sh",
+    "author": "Josh H, https://j-o.sh",
     "description": "A uniquely simple and conscious library full of pretty ugly colors.",
-    "keywords": ["colors", "pretty", "ugly"],
-    "homepage": "https://docs.torstol.com/colors",
+    "keywords": ["colors", "pretty", "ugly", "pugs"],
+    "homepage": "https://pugs.fyi",
     "version": "0.1.0",
     "main": "dist/index.js",
     "module": "dist/index.js",
