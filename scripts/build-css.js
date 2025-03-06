@@ -5,9 +5,9 @@ const { colors } = require("../dist/index.js");
 const outputDir = path.resolve(__dirname, "..");
 
 function generateCSS(colorName, color) {
-  // Get the available shades from the color object, excluding 'a', 'p3', 'p3a'
+  // Get the available shades from the color object, excluding 'a', 'oklch', 'p3a'
   const shades = Object.keys(color).filter(
-    (key) => !["a", "p3", "p3a"].includes(key)
+    (key) => !["a", "oklch", "p3a"].includes(key)
   );
 
   let cssContent = ":root {\n";
@@ -27,10 +27,10 @@ function generateCSS(colorName, color) {
   }
 
   // P3
-  cssContent += "  // p3\n";
+  cssContent += "  // oklch\n";
   for (const shade of shades) {
-    if (color.p3 && color.p3[shade]) {
-      cssContent += `  --${colorName}P3-${shade}: ${color.p3[shade]};\n`;
+    if (color.oklch && color.oklch[shade]) {
+      cssContent += `  --${colorName}OK-${shade}: ${color.oklch[shade]};\n`;
     }
   }
 
