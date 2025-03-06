@@ -1,6 +1,6 @@
 # Pretty Ugly Colors
 
-**A uniquely simple yet mathmatically insane library full of pretty ugly colors—designed for accessibility.**
+**A uniquely simple yet mathematically insane library full of pretty ugly colors—designed for accessibility.**
 
 ## Installation
 
