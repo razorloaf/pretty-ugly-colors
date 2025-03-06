@@ -1,10 +1,10 @@
 # Pretty Ugly Colors
 
-**A uniquely simple and conscious library full of pretty ugly colors.**
+**A uniquely simple yet mathmatically insane library full of pretty ugly colors—designed for accessibility.**
 
 ## Installation
 
-View the colors and how to install, import, and use at [docs.torstol.com/foundations/colors](https://docs.torstol.com/foundations/colors).
+View the colors and how to install, import, and use at [prettyugly.xyz](https://prettyugly.xyz).
 
 ## Author
 
