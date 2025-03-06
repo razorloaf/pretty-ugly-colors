@@ -1,9 +1,9 @@
 {
     "name": "@razorloaf/pretty-ugly-colors",
     "author": "Josh H, https://j-o.sh",
-    "description": "A uniquely simple and conscious library full of pretty ugly colors.",
-    "keywords": ["colors", "pretty", "ugly", "pugs"],
-    "homepage": "https://pugs.fyi",
+    "description": "A uniquely simple yet mathmatically insane library full of pretty ugly colors—designed for accessibility.",
+    "keywords": ["colors", "pretty", "ugly", "oklch", "display-p3", "alpha", "custom"],
+    "homepage": "https://prettyugly.xyz",
     "version": "0.1.0",
     "main": "dist/index.js",
     "module": "dist/index.js",
