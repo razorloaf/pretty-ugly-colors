@@ -8,8 +8,65 @@ export interface Shades {
     oklch: Shades;
     p3a: Shades;
   }
+
+  export const neutral: Color = {
+    "0": "#FFFFFF",
+    "1": "#080808",
+    "100": "#FAFAFA",
+    "200": "#F3F2F2",
+    "300": "#E6E5E5",
+    "400": "#D5D3D3",
+    "500": "#C3C1C1",
+    "600": "#535150",
+    "700": "#444241",
+    "800": "#343332",
+    "900": "#1F1E1E",
+    "1000": "#151414",
+    a: {
+      "0": "#FFFFFFFF",
+      "100": "#00000005",
+      "200": "#1400000D",
+      "300": "#0A00001A",
+      "400": "#0C00002C",
+      "500": "#0800003E",
+      "600": "#040100AF",
+      "700": "#040100BE",
+      "800": "#020100CD",
+      "900": "#010000E1",
+      "1000": "#010000EB",
+      "1": "#000000F7",
+    },
+    oklch: {
+      "0": "oklch(100.0% 0.0001 263.4)",
+      "100": "oklch(98.5% 0.0001 263.3)",
+      "200": "oklch(96.2% 0.0010 13.0)",
+      "300": "oklch(92.3% 0.0011 13.2)",
+      "400": "oklch(86.8% 0.0022 15.4)",
+      "500": "oklch(81.3% 0.0022 15.5)",
+      "600": "oklch(43.6% 0.0031 48.3)",
+      "700": "oklch(38.1% 0.0032 48.4)",
+      "800": "oklch(32.2% 0.0022 67.6)",
+      "900": "oklch(23.6% 0.0015 16.6)",
+      "1000": "oklch(19.2% 0.0016 16.8)",
+      "1": "oklch(13.4% 0.0000 298.1)",
+    },
+    p3a: {
+      "0": "color(display-p3 1 0.9263 0 / 0.000)",
+      "100": "color(display-p3 0.0076 0.0044 0 / 0.020)",
+      "200": "color(display-p3 0.0648 0.0029 0 / 0.051)",
+      "300": "color(display-p3 0.0323 0.0014 0 / 0.102)",
+      "400": "color(display-p3 0.0374 0.0012 0 / 0.172)",
+      "500": "color(display-p3 0.0265 0.0008 0 / 0.243)",
+      "600": "color(display-p3 0.0145 0.0054 0 / 0.686)",
+      "700": "color(display-p3 0.0134 0.005 0 / 0.745)",
+      "800": "color(display-p3 0.0084 0.0045 0 / 0.804)",
+      "900": "color(display-p3 0.0036 0.0001 0 / 0.882)",
+      "1000": "color(display-p3 0.0035 0.0001 0 / 0.922)",
+      "1": "color(display-p3 0 0 0 / 0.969)",
+    },
+  };
   
-  export const canterbury: Color = {
+  export const purple: Color = {
     "100": "#F6F0FE",
     "200": "#E9DDFD",
     "300": "#DCCAFC",
@@ -58,7 +115,7 @@ export interface Shades {
     },
   };
   
-  export const bluebell: Color = {
+  export const blue: Color = {
     "100": "#F2F5FD",
     "200": "#E0E7FA",
     "300": "#C6D2F6",
@@ -107,7 +164,7 @@ export interface Shades {
     },
   };
   
-  export const seaweed: Color = {
+  export const green: Color = {
     "100": "#F6FCF2",
     "200": "#EAF9E1",
     "300": "#D9F4C8",
@@ -156,7 +213,7 @@ export interface Shades {
     },
   };
   
-  export const lemon: Color = {
+  export const yellow: Color = {
     "100": "#FBF9E4",
     "200": "#F9F5D2",
     "300": "#F5EFB7",
@@ -205,7 +262,7 @@ export interface Shades {
     },
   };
   
-  export const tawny: Color = {
+  export const orange: Color = {
     "100": "#FEF5F0",
     "200": "#FEECE2",
     "300": "#FCD3BA",
@@ -254,7 +311,7 @@ export interface Shades {
     },
   };
   
-  export const rhubarb: Color = {
+  export const red: Color = {
     "100": "#FFF0F0",
     "200": "#FFDBDB",
     "300": "#FFC7C7",
@@ -303,69 +360,12 @@ export interface Shades {
     },
   };
   
-  export const crane: Color = {
-    "0": "#FFFFFF",
-    "100": "#FAFAFA",
-    "200": "#F3F2F2",
-    "300": "#E6E5E5",
-    "400": "#D5D3D3",
-    "500": "#C3C1C1",
-    "600": "#535150",
-    "700": "#444241",
-    "800": "#343332",
-    "900": "#1F1E1E",
-    "1000": "#151414",
-    "1": "#000000",
-    a: {
-      "0": "#FFFFFFFF",
-      "100": "#00000005",
-      "200": "#1400000D",
-      "300": "#0A00001A",
-      "400": "#0C00002C",
-      "500": "#0800003E",
-      "600": "#040100AF",
-      "700": "#040100BE",
-      "800": "#020100CD",
-      "900": "#010000E1",
-      "1000": "#010000EB",
-      "1": "#000000F7",
-    },
-    oklch: {
-      "0": "oklch(100.0% 0.0001 263.4)",
-      "100": "oklch(98.5% 0.0001 263.3)",
-      "200": "oklch(96.2% 0.0010 13.0)",
-      "300": "oklch(92.3% 0.0011 13.2)",
-      "400": "oklch(86.8% 0.0022 15.4)",
-      "500": "oklch(81.3% 0.0022 15.5)",
-      "600": "oklch(43.6% 0.0031 48.3)",
-      "700": "oklch(38.1% 0.0032 48.4)",
-      "800": "oklch(32.2% 0.0022 67.6)",
-      "900": "oklch(23.6% 0.0015 16.6)",
-      "1000": "oklch(19.2% 0.0016 16.8)",
-      "1": "oklch(13.4% 0.0000 298.1)",
-    },
-    p3a: {
-      "0": "color(display-p3 1 0.9263 0 / 0.000)",
-      "100": "color(display-p3 0.0076 0.0044 0 / 0.020)",
-      "200": "color(display-p3 0.0648 0.0029 0 / 0.051)",
-      "300": "color(display-p3 0.0323 0.0014 0 / 0.102)",
-      "400": "color(display-p3 0.0374 0.0012 0 / 0.172)",
-      "500": "color(display-p3 0.0265 0.0008 0 / 0.243)",
-      "600": "color(display-p3 0.0145 0.0054 0 / 0.686)",
-      "700": "color(display-p3 0.0134 0.005 0 / 0.745)",
-      "800": "color(display-p3 0.0084 0.0045 0 / 0.804)",
-      "900": "color(display-p3 0.0036 0.0001 0 / 0.882)",
-      "1000": "color(display-p3 0.0035 0.0001 0 / 0.922)",
-      "1": "color(display-p3 0 0 0 / 0.969)",
-    },
-  };
-  
   export const colors = {
-    canterbury,
-    bluebell,
-    seaweed,
-    lemon,
-    tawny,
-    rhubarb,
-    crane,
+    neutral,
+    purple,
+    blue,
+    green,
+    yellow,
+    orange,
+    red,
   };
