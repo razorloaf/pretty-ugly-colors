@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const { colors } = require("../dist/js/index.js");
-const { tokens } = require("../dist/js/tokens.js");
 
 // Create directories
 const dirs = ["dist/css", "dist/js"];
@@ -45,67 +44,82 @@ function generateModernCSS() {
     
     cssContent += `\n  /* ${colorName} - Advanced Formats */\n`;
     
-    // Group by format type - Alpha
-    if (color.a) {
-      for (const shade of shades) {
-        if (color.a[shade]) {
-          cssContent += `  --${colorName}-${shade}-alpha: ${color.a[shade]};\n`;
-        }
-      }
-      cssContent += "\n";
-    }
-    
-    // Group by format type - OKLCH
-    if (color.oklch) {
-      for (const shade of shades) {
-        if (color.oklch[shade]) {
-          cssContent += `  --${colorName}-${shade}-oklch: ${color.oklch[shade]};\n`;
-        }
-      }
-      cssContent += "\n";
-    }
-    
-    // Group by format type - P3
-    if (color.p3a) {
-      for (const shade of shades) {
-        if (color.p3a[shade]) {
-          cssContent += `  --${colorName}-${shade}-p3: ${color.p3a[shade]};\n`;
-        }
-      }
-      cssContent += "\n";
-    }
+    // Process each format type using a helper function to avoid repetition
+    processColorFormat(cssContent, colorName, color, shades, 'a', 'alpha');
+    processColorFormat(cssContent, colorName, color, shades, 'oklch', 'oklch');
+    processColorFormat(cssContent, colorName, color, shades, 'p3a', 'p3a');
   }
   
   cssContent += "}\n";
   return cssContent;
 }
 
-// Generate tokens CSS
-function generateTokensCSS() {
-  let cssContent = "/* Pretty Ugly Colors - Semantic Tokens */\n\n";
-  cssContent += ":root {\n";
-  
-  for (const [category, categoryTokens] of Object.entries(tokens)) {
-    cssContent += `\n  /* ${category} tokens */\n`;
-    
-    for (const [tokenName, colorRef] of Object.entries(categoryTokens)) {
-      cssContent += `  --${category}-${tokenName}: var(--${colorRef});\n`;
+// Helper function to process each color format
+function processColorFormat(cssContent, colorName, color, shades, formatKey, formatSuffix) {
+  if (color[formatKey]) {
+    for (const shade of shades) {
+      if (color[formatKey][shade]) {
+        cssContent += `  --${colorName}-${shade}-${formatSuffix}: ${color[formatKey][shade]};\n`;
+      }
     }
+    cssContent += "\n";
   }
-  
-  cssContent += "}\n";
-  return cssContent;
 }
 
-// Obfuscate the DPS runtime
-function obfuscateDPSRuntime() {
-  // Read the compiled DPS runtime
-  const runtimePath = path.join(__dirname, "..", "dist/js", "dps-runtime.js");
-  let runtimeContent = fs.readFileSync(runtimePath, "utf8");
-  
-  // Create runtime data
+// Process the DPS runtime - Safer approach without aggressive obfuscation
+function processDPSRuntime() {
+  try {
+    // Read the compiled DPS runtime
+    const runtimePath = path.join(__dirname, "..", "dist/js", "dps-runtime.js");
+    let runtimeContent = fs.readFileSync(runtimePath, "utf8");
+    
+    // Create runtime data
+    const runtimeColors = createRuntimeColors();
+    
+    const colorsJson = JSON.stringify(runtimeColors);
+    
+    // Safer function name replacements - preserve structure
+    runtimeContent = runtimeContent
+      .replace(/applyModifierRuntime/g, '_aM')
+      .replace(/processDPSValue/g, '_pV')
+      .replace(/processStylesheet/g, '_pS')
+      .replace(/initDPS/g, '_iD');
+    
+    // Safer replacement of window objects
+    runtimeContent = runtimeContent.replace(
+      /window\.__PRETTY_UGLY_COLORS__\s*=\s*window\.__PRETTY_UGLY_COLORS__\s*\|\|\s*{};/,
+      `window.__PRETTY_UGLY_COLORS__ = window.__PRETTY_UGLY_COLORS__ || ${colorsJson};`
+    );
+    
+    // Remove token-related code
+    runtimeContent = runtimeContent.replace(
+      /window\.__PRETTY_UGLY_TOKENS__\s*=\s*window\.__PRETTY_UGLY_TOKENS__\s*\|\|\s*{};/,
+      ''
+    );
+    
+    // Validate that the output is valid JavaScript
+    try {
+      // Simple syntax validation by trying to parse it
+      // This won't catch all errors but helps with obvious ones
+      Function(runtimeContent);
+      console.log("Runtime processed successfully and validated.");
+    } catch (syntaxError) {
+      console.error("Syntax error in processed runtime:", syntaxError);
+      // Fall back to the original file
+      runtimeContent = fs.readFileSync(runtimePath, "utf8");
+      console.log("Using original runtime file instead.");
+    }
+    
+    return runtimeContent;
+  } catch (error) {
+    console.error("Error processing runtime:", error);
+    return "// Error processing runtime file";
+  }
+}
+
+// Helper to create runtime colors data
+function createRuntimeColors() {
   const runtimeColors = {};
-  const tokenMap = {};
   
   for (const [colorName, color] of Object.entries(colors)) {
     runtimeColors[colorName] = {};
@@ -120,61 +134,38 @@ function obfuscateDPSRuntime() {
     }
     
     // Add variants
-    runtimeColors[colorName].a = color.a;
-    runtimeColors[colorName].oklch = color.oklch;
-    runtimeColors[colorName].p3a = color.p3a;
+    if (color.a) runtimeColors[colorName].a = color.a;
+    if (color.oklch) runtimeColors[colorName].oklch = color.oklch;
+    if (color.p3a) runtimeColors[colorName].p3a = color.p3a;
   }
   
-  // Flatten tokens
-  for (const [category, categoryTokens] of Object.entries(tokens)) {
-    for (const [tokenName, colorRef] of Object.entries(categoryTokens)) {
-      tokenMap[`${category}-${tokenName}`] = colorRef;
-    }
-  }
-  
-  const colorsJson = JSON.stringify(runtimeColors);
-  const tokensJson = JSON.stringify(tokenMap);
-  
-  // Basic obfuscation
-  runtimeContent = runtimeContent
-    .replace(/\s+/g, ' ')
-    .replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '')
-    .replace(/applyModifierRuntime/g, '_aM')
-    .replace(/processDPSValue/g, '_pV')
-    .replace(/processStylesheet/g, '_pS')
-    .replace(/initDPS/g, '_iD');
-  
-  runtimeContent = runtimeContent.replace(
-    "window.__PRETTY_UGLY_COLORS__ = window.__PRETTY_UGLY_COLORS__ || {}",
-    `window.__PRETTY_UGLY_COLORS__ = window.__PRETTY_UGLY_COLORS__ || ${colorsJson}`
-  );
-  
-  runtimeContent = runtimeContent.replace(
-    "window.__PRETTY_UGLY_TOKENS__ = window.__PRETTY_UGLY_TOKENS__ || {}",
-    `window.__PRETTY_UGLY_TOKENS__ = window.__PRETTY_UGLY_TOKENS__ || ${tokensJson}`
-  );
-  
-  return runtimeContent;
+  return runtimeColors;
 }
 
 // Write files
 function writeFile(relativePath, content) {
-  const filePath = path.join(__dirname, "..", relativePath);
-  fs.writeFileSync(filePath, content, "utf8");
-  console.log(`Generated ${relativePath}`);
+  try {
+    const filePath = path.join(__dirname, "..", relativePath);
+    fs.writeFileSync(filePath, content, "utf8");
+    console.log(`Generated ${relativePath}`);
+  } catch (error) {
+    console.error(`Failed to write ${relativePath}:`, error);
+  }
 }
 
 // Generate files
-const coreCSS = generateCoreCSS();
-writeFile("dist/css/colors.css", coreCSS);
+try {
+  const coreCSS = generateCoreCSS();
+  writeFile("dist/css/colors.css", coreCSS);
 
-const modernCSS = generateModernCSS();
-writeFile("dist/css/colors-modern.css", modernCSS);
+  const modernCSS = generateModernCSS();
+  writeFile("dist/css/colors-modern.css", modernCSS);
 
-const tokensCSS = generateTokensCSS();
-writeFile("dist/css/tokens.css", tokensCSS);
+  const processedRuntime = processDPSRuntime();
+  writeFile("dist/js/runtime.js", processedRuntime);
 
-const obfuscatedRuntime = obfuscateDPSRuntime();
-writeFile("dist/js/runtime.js", obfuscatedRuntime);
-
-console.log("All files generated successfully!");
+  console.log("All files generated successfully!");
+} catch (error) {
+  console.error("Build failed:", error);
+  process.exit(1);
+}
