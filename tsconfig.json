@@ -1,14 +1,14 @@
 {
-    "include": ["src/**/*"],
-    "exclude": ["node_modules", "dist"],
-    "compilerOptions": {
-      "module": "commonjs",
-      "target": "ES2022",
-      "declaration": true,
-      "outDir": "dist",
-      "rootDir": "src",
-      "strict": true,
-      "esModuleInterop": true,
-      "forceConsistentCasingInFileNames": true
-    }
+  "include": ["src/**/*", "src/tokens.ts"],
+  "exclude": ["node_modules", "dist"],
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2022",
+    "declaration": true,
+    "outDir": "dist/js",
+    "rootDir": "src",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
   }
+}

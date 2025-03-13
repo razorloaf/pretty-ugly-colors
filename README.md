@@ -4,7 +4,14 @@
 
 ## Installation
 
-View the colors and how to install, import, and use at [prettyugly.xyz](https://prettyugly.xyz).
+Learn how to install, import, and use at [prettyugly.xyz](https://prettyugly.xyz)
+
+## Browser Compatibility
+
+- DPS runtime works in all modern browsers (Chrome, Firefox, Safari, Edge)
+- Basic color variables work in all browsers that support CSS Custom Properties
+- OKLCH colors require Chrome 111+, Firefox 113+, Safari 16.4+
+- Display-P3 colors require Safari 10+, Chrome 111+, Firefox 113+ with appropriate flags
 
 ## Author
 
