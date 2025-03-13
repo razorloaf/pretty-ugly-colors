@@ -1,5 +1,5 @@
-/scripts
-/src
+src/
+scripts/
 .gitignore
 tsconfig.json
 package-lock.json
