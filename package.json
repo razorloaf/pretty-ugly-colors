@@ -2,7 +2,16 @@
     "name": "@razorloaf/pretty-ugly-colors",
     "author": "Josh H, https://j-o.sh",
     "description": "A uniquely simple yet mathematically insane library full of pretty ugly colors—designed for accessibility.",
-    "keywords": ["colors", "pretty", "ugly", "oklch", "display-p3", "alpha", "custom", "dps", "tokens"],
+    "keywords": [
+        "colors",
+        "pretty",
+        "ugly",
+        "oklch",
+        "display-p3",
+        "alpha",
+        "custom",
+        "dps"
+    ],
     "homepage": "https://prettyugly.xyz",
     "version": "0.2.0",
     "main": "dist/js/index.js",
@@ -10,44 +19,36 @@
     "types": "dist/js/index.d.ts",
     "license": "MIT",
     "files": [
-      "dist/js/index.js",
-      "dist/js/index.d.ts",
-      "dist/js/tokens.js",
-      "dist/js/tokens.d.ts",
-      "dist/js/dps.js",
-      "dist/js/runtime.js",
-      "dist/css/colors.css",
-      "dist/css/colors-modern.css",
-      "dist/css/tokens.css",
-      "LICENSE"
+        "dist/js/index.js",
+        "dist/js/index.d.ts",
+        "dist/js/dps.js",
+        "dist/js/runtime.js",
+        "dist/css/colors.css",
+        "dist/css/colors-modern.css",
+        "LICENSE"
     ],
     "exports": {
-      ".": {
-        "import": "./dist/js/index.js",
-        "require": "./dist/js/index.js",
-        "default": "./dist/js/index.js"
-      },
-      "./tokens": {
-        "import": "./dist/js/tokens.js",
-        "require": "./dist/js/tokens.js",
-        "default": "./dist/js/tokens.js"
-      },
-      "./dps": {
-        "import": "./dist/js/dps.js",
-        "require": "./dist/js/dps.js",
-        "default": "./dist/js/dps.js"
-      },
-      "./css": "./dist/css/colors.css",
-      "./css/modern": "./dist/css/colors-modern.css",
-      "./css/tokens": "./dist/css/tokens.css",
-      "./runtime": "./dist/js/runtime.js"
+        ".": {
+            "import": "./dist/js/index.js",
+            "require": "./dist/js/index.js",
+            "default": "./dist/js/index.js"
+        },
+        "./dps": {
+            "import": "./dist/js/dps.js",
+            "require": "./dist/js/dps.js",
+            "default": "./dist/js/dps.js"
+        },
+        "./css": "./dist/css/colors.css",
+        "./css/modern": "./dist/css/colors-modern.css",
+        "./runtime": "./dist/js/runtime.js"
     },
     "scripts": {
-      "build": "tsc && node scripts/build-css.js",
-      "prepublishOnly": "npm run build"
+        "build": "tsc && node scripts/build-css.js",
+        "prepublishOnly": "npm run build"
     },
     "devDependencies": {
-      "standard-version": "^9.5.0",
-      "typescript": "^5.7.3"
+        "@types/node": "^22.13.10",
+        "standard-version": "^9.5.0",
+        "typescript": "^5.7.3"
     }
-  }
+}
