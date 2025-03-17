@@ -5,3 +5,10 @@ node_modules
 package-lock.json
 src/dps.ts
 src/dps-runtime.ts
+src/shared-utilities.ts
+dist/js/dps.js
+dist/js/dps.d.ts
+dist/js/dps-runtime.js
+dist/js/dps-runtime.d.ts
+dist/js/shared-utilities.js
+dist/js/shared-utilities.d.ts
