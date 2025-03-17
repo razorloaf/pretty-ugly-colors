@@ -1,7 +1,7 @@
 {
     "name": "@razorloaf/tayer-colors",
     "author": "Josh H, https://j-o.sh",
-    "description": "A uniquely simple yet mathematically insane library full of pretty ugly colors—designed for accessibility.",
+    "description": "A not so simple color system—designed for accessibility.",
     "keywords": [
         "colors",
         "oklch",
