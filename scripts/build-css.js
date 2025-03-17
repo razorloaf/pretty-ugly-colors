@@ -44,26 +44,37 @@ function generateModernCSS() {
     
     cssContent += `\n  /* ${colorName} - Advanced Formats */\n`;
     
-    // Process each format type using a helper function to avoid repetition
-    processColorFormat(cssContent, colorName, color, shades, 'a', 'alpha');
-    processColorFormat(cssContent, colorName, color, shades, 'oklch', 'oklch');
-    processColorFormat(cssContent, colorName, color, shades, 'p3a', 'p3a');
+    // Process each format type directly in this function
+    if (color.a) {
+      for (const shade of shades) {
+        if (color.a[shade]) {
+          cssContent += `  --${colorName}-${shade}-alpha: ${color.a[shade]};\n`;
+        }
+      }
+      cssContent += "\n";
+    }
+    
+    if (color.oklch) {
+      for (const shade of shades) {
+        if (color.oklch[shade]) {
+          cssContent += `  --${colorName}-${shade}-oklch: ${color.oklch[shade]};\n`;
+        }
+      }
+      cssContent += "\n";
+    }
+    
+    if (color.p3a) {
+      for (const shade of shades) {
+        if (color.p3a[shade]) {
+          cssContent += `  --${colorName}-${shade}-p3a: ${color.p3a[shade]};\n`;
+        }
+      }
+      cssContent += "\n";
+    }
   }
   
   cssContent += "}\n";
   return cssContent;
-}
-
-// Helper function to process each color format
-function processColorFormat(cssContent, colorName, color, shades, formatKey, formatSuffix) {
-  if (color[formatKey]) {
-    for (const shade of shades) {
-      if (color[formatKey][shade]) {
-        cssContent += `  --${colorName}-${shade}-${formatSuffix}: ${color[formatKey][shade]};\n`;
-      }
-    }
-    cssContent += "\n";
-  }
 }
 
 // Process the DPS runtime - Safer approach without aggressive obfuscation
