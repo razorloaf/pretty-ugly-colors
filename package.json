@@ -38,8 +38,8 @@
             "require": "./dist/js/dps.js",
             "default": "./dist/js/dps.js"
         },
-        "./css": "./dist/css/colors.css",
-        "./css/modern": "./dist/css/colors-modern.css",
+        "./standard": "./dist/css/colors.css",
+        "./constellation": "./dist/css/colors-modern.css",
         "./runtime": "./dist/js/runtime.js"
     },
     "scripts": {
