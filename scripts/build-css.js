@@ -10,9 +10,8 @@ dirs.forEach(dir => {
   }
 });
 
-// Generate CSS with only hex values
 function generateCoreCSS() {
-  let cssContent = "/* Pretty Ugly Colors - Core Colors */\n\n";
+  let cssContent = "/* Pretty Ugly Colors - All Colors */\n\n";
   cssContent += ":root {\n";
   
   for (const [colorName, color] of Object.entries(colors)) {
@@ -22,9 +21,36 @@ function generateCoreCSS() {
     
     cssContent += `\n  /* ${colorName} */\n`;
     
-    // Hex only
+    // Hex values
     for (const shade of shades) {
       cssContent += `  --${colorName}-${shade}: ${color[shade]};\n`;
+    }
+    
+    // Alpha variants
+    if (color.a) {
+      for (const shade of shades) {
+        if (color.a[shade]) {
+          cssContent += `  --${colorName}-${shade}-alpha: ${color.a[shade]};\n`;
+        }
+      }
+    }
+    
+    // OKLCH variants
+    if (color.oklch) {
+      for (const shade of shades) {
+        if (color.oklch[shade]) {
+          cssContent += `  --${colorName}-${shade}-oklch: ${color.oklch[shade]};\n`;
+        }
+      }
+    }
+    
+    // P3 variants
+    if (color.p3a) {
+      for (const shade of shades) {
+        if (color.p3a[shade]) {
+          cssContent += `  --${colorName}-${shade}-p3a: ${color.p3a[shade]};\n`;
+        }
+      }
     }
   }
   
@@ -32,20 +58,33 @@ function generateCoreCSS() {
   return cssContent;
 }
 
-// Generate CSS with modern color formats
-function generateModernCSS() {
-  let cssContent = "/* Pretty Ugly Colors - Modern Color Formats */\n\n";
-  cssContent += ":root {\n";
-  
+// Individual files for easy, singular imports
+function generateIndividualColorCSS() {
+  // Create directory if it doesn't exist
+  const colorDir = "dist/css";
+  if (!fs.existsSync(colorDir)) {
+    fs.mkdirSync(colorDir, { recursive: true });
+  }
+
+  // For each color family
   for (const [colorName, color] of Object.entries(colors)) {
+    let cssContent = `/* Pretty Ugly Colors - ${colorName} */\n\n`;
+    cssContent += ":root {\n";
+    
     const shades = Object.keys(color).filter(
       (key) => !["a", "oklch", "p3a"].includes(key)
     );
     
-    cssContent += `\n  /* ${colorName} - Advanced Formats */\n`;
+    // Standard hex variables
+    cssContent += `  /* ${colorName} - Hex */\n`;
+    for (const shade of shades) {
+      cssContent += `  --${colorName}-${shade}: ${color[shade]};\n`;
+    }
+    cssContent += "\n";
     
-    // Process each format type directly in this function
+    // Alpha variants
     if (color.a) {
+      cssContent += `  /* ${colorName} - Alpha */\n`;
       for (const shade of shades) {
         if (color.a[shade]) {
           cssContent += `  --${colorName}-${shade}-alpha: ${color.a[shade]};\n`;
@@ -54,7 +93,9 @@ function generateModernCSS() {
       cssContent += "\n";
     }
     
+    // OKLCH variants
     if (color.oklch) {
+      cssContent += `  /* ${colorName} - OKLCH */\n`;
       for (const shade of shades) {
         if (color.oklch[shade]) {
           cssContent += `  --${colorName}-${shade}-oklch: ${color.oklch[shade]};\n`;
@@ -63,19 +104,23 @@ function generateModernCSS() {
       cssContent += "\n";
     }
     
+    // P3 with Alpha variants
     if (color.p3a) {
+      cssContent += `  /* ${colorName} - Display-P3 */\n`;
       for (const shade of shades) {
         if (color.p3a[shade]) {
           cssContent += `  --${colorName}-${shade}-p3a: ${color.p3a[shade]};\n`;
         }
       }
-      cssContent += "\n";
     }
+    
+    cssContent += "}\n";
+    writeFile(`dist/css/${colorName}.css`, cssContent);
   }
   
-  cssContent += "}\n";
-  return cssContent;
+  console.log("Generated individual color CSS files");
 }
+
 
 // Process the DPS runtime - Safer approach without aggressive obfuscation
 function processDPSRuntime() {
@@ -169,8 +214,7 @@ try {
   const coreCSS = generateCoreCSS();
   writeFile("dist/css/colors.css", coreCSS);
 
-  const modernCSS = generateModernCSS();
-  writeFile("dist/css/colors-modern.css", modernCSS);
+  generateIndividualColorCSS();
 
   const processedRuntime = processDPSRuntime();
   writeFile("dist/js/runtime.js", processedRuntime);

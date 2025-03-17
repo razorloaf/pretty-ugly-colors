@@ -1,18 +1,16 @@
 {
-    "name": "@razorloaf/pretty-ugly-colors",
+    "name": "@razorloaf/tayer-colors",
     "author": "Josh H, https://j-o.sh",
     "description": "A uniquely simple yet mathematically insane library full of pretty ugly colors—designed for accessibility.",
     "keywords": [
         "colors",
-        "pretty",
-        "ugly",
         "oklch",
         "display-p3",
         "alpha",
         "custom",
         "dps"
     ],
-    "homepage": "https://prettyugly.xyz",
+    "homepage": "https://tayer.dev/colors",
     "version": "0.2.0",
     "main": "dist/js/index.js",
     "module": "dist/js/index.js",
@@ -24,7 +22,13 @@
         "dist/js/dps.js",
         "dist/js/runtime.js",
         "dist/css/colors.css",
-        "dist/css/colors-modern.css",
+        "dist/css/neutral.css",
+        "dist/css/purple.css",
+        "dist/css/blue.css",
+        "dist/css/green.css",
+        "dist/css/yellow.css",
+        "dist/css/orange.css",
+        "dist/css/red.css",
         "LICENSE"
     ],
     "exports": {
@@ -38,8 +42,14 @@
             "require": "./dist/js/dps.js",
             "default": "./dist/js/dps.js"
         },
-        "./standard": "./dist/css/colors.css",
-        "./constellation": "./dist/css/colors-modern.css",
+        "./colors": "./dist/css/colors.css",
+        "./neutral": "./dist/css/neutral.css",
+        "./purple": "./dist/css/purple.css",
+        "./blue": "./dist/css/blue.css",
+        "./green": "./dist/css/green.css",
+        "./yellow": "./dist/css/yellow.css",
+        "./orange": "./dist/css/orange.css",
+        "./red": "./dist/css/red.css",
         "./runtime": "./dist/js/runtime.js"
     },
     "scripts": {
