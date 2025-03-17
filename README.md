@@ -4,7 +4,7 @@
 
 ## Installation
 
-Learn how to install, import, and use at [prettyugly.xyz](https://prettyugly.xyz)
+Learn how to install, import, and use at [tayer.dev/colors](https://tayer.dev/colors)
 
 ## Browser Compatibility
 
