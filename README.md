@@ -1,6 +1,6 @@
-# Pretty Ugly Colors
+# Tayer Colors
 
-**A uniquely simple yet mathematically insane library full of pretty ugly colors—designed for accessibility.**
+**A not so simple color system—designed for accessibility.**
 
 ## Installation
 
