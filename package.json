@@ -11,7 +11,7 @@
         "dps"
     ],
     "homepage": "https://tayer.dev/colors",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "main": "dist/js/index.js",
     "module": "dist/js/index.js",
     "types": "dist/js/index.d.ts",
