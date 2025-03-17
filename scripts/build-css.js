@@ -198,6 +198,29 @@ function createRuntimeColors() {
   return runtimeColors;
 }
 
+const JavaScriptObfuscator = require('javascript-obfuscator');
+
+function obfuscateDPSCode(filePath) {
+  const code = fs.readFileSync(filePath, 'utf8');
+  const obfuscatedCode = JavaScriptObfuscator.obfuscate(code, {
+    compact: true,
+    controlFlowFlattening: true,
+    controlFlowFlatteningThreshold: 0.7,
+    deadCodeInjection: true,
+    deadCodeInjectionThreshold: 0.4,
+    identifierNamesGenerator: 'hexadecimal',
+    renameGlobals: true,
+    selfDefending: true,
+    stringArray: true,
+    stringArrayEncoding: ['base64'],
+    stringArrayThreshold: 0.8,
+    transformObjectKeys: true,
+    unicodeEscapeSequence: true
+  }).getObfuscatedCode();
+  
+  return obfuscatedCode;
+}
+
 // Write files
 function writeFile(relativePath, content) {
   try {
@@ -218,6 +241,12 @@ try {
 
   const processedRuntime = processDPSRuntime();
   writeFile("dist/js/runtime.js", processedRuntime);
+
+  const dpsCode = obfuscateDPSCode(path.join(__dirname, '..', 'dist/js/dps.js'));
+  writeFile('dist/js/dps.min.js', dpsCode);
+
+  const runtimeCode = obfuscateDPSCode(path.join(__dirname, '..', 'dist/js/runtime.js'));
+  writeFile('dist/js/runtime.min.js', runtimeCode);
 
   console.log("All files generated successfully!");
 } catch (error) {

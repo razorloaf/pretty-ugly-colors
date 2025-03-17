@@ -19,8 +19,8 @@
     "files": [
         "dist/js/index.js",
         "dist/js/index.d.ts",
-        "dist/js/dps.js",
-        "dist/js/runtime.js",
+        "dist/js/dps.min.js",
+        "dist/js/runtime.min.js",
         "dist/css/colors.css",
         "dist/css/neutral.css",
         "dist/css/purple.css",
@@ -38,9 +38,9 @@
             "default": "./dist/js/index.js"
         },
         "./dps": {
-            "import": "./dist/js/dps.js",
-            "require": "./dist/js/dps.js",
-            "default": "./dist/js/dps.js"
+            "import": "./dist/js/dps.min.js",
+            "require": "./dist/js/dps.min.js",
+            "default": "./dist/js/dps.min.js"
         },
         "./colors": "./dist/css/colors.css",
         "./neutral": "./dist/css/neutral.css",
@@ -50,7 +50,7 @@
         "./yellow": "./dist/css/yellow.css",
         "./orange": "./dist/css/orange.css",
         "./red": "./dist/css/red.css",
-        "./runtime": "./dist/js/runtime.js"
+        "./runtime": "./dist/js/runtime.min.js"
     },
     "scripts": {
         "build": "tsc && node scripts/build-css.js",
@@ -58,6 +58,7 @@
     },
     "devDependencies": {
         "@types/node": "^22.13.10",
+        "javascript-obfuscator": "^4.1.1",
         "standard-version": "^9.5.0",
         "typescript": "^5.7.3"
     }
