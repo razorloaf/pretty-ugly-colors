@@ -11,7 +11,7 @@ dirs.forEach(dir => {
 });
 
 function generateCoreCSS() {
-  let cssContent = "/* Pretty Ugly Colors - All Colors */\n\n";
+  let cssContent = "/* Tayer Colors - All Colors */\n\n";
   cssContent += ":root {\n";
   
   for (const [colorName, color] of Object.entries(colors)) {
