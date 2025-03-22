@@ -8,10 +8,12 @@
         "display-p3",
         "alpha",
         "custom",
-        "dps"
+        "dps",
+        "light-theme",
+        "dark-theme"
     ],
     "homepage": "https://tayer.dev/colors",
-    "version": "0.2.2",
+    "version": "1.0.0",
     "main": "dist/js/index.js",
     "module": "dist/js/index.js",
     "types": "dist/js/index.d.ts",
@@ -29,6 +31,13 @@
         "dist/css/yellow.css",
         "dist/css/orange.css",
         "dist/css/red.css",
+        "dist/css/neutral-dark.css",
+        "dist/css/purple-dark.css",
+        "dist/css/blue-dark.css",
+        "dist/css/green-dark.css",
+        "dist/css/yellow-dark.css",
+        "dist/css/orange-dark.css",
+        "dist/css/red-dark.css",
         "LICENSE"
     ],
     "exports": {
@@ -50,6 +59,14 @@
         "./yellow": "./dist/css/yellow.css",
         "./orange": "./dist/css/orange.css",
         "./red": "./dist/css/red.css",
+        "./neutral-dark": "./dist/css/neutral-dark.css",
+        "./purple-dark": "./dist/css/purple-dark.css",
+        "./blue-dark": "./dist/css/blue-dark.css",
+        "./green-dark": "./dist/css/green-dark.css",
+        "./yellow-dark": "./dist/css/yellow-dark.css",
+        "./orange-dark": "./dist/css/orange-dark.css",
+        "./red-dark": "./dist/css/red-dark.css",
+        "./pink-dark": "./dist/css/pink-dark.css",
         "./runtime": "./dist/js/runtime.min.js"
     },
     "scripts": {
