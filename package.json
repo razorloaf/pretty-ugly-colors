@@ -13,7 +13,7 @@
         "dark-theme"
     ],
     "homepage": "https://tayer.dev/colors",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "dist/js/index.js",
     "module": "dist/js/index.js",
     "types": "dist/js/index.d.ts",
