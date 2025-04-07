@@ -13,7 +13,7 @@
         "dark-theme"
     ],
     "homepage": "https://mid.engineering/docs/pretty-ugly-colors",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "main": "dist/js/index.js",
     "module": "dist/js/index.js",
     "types": "dist/js/index.d.ts",
