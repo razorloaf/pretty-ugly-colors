@@ -523,7 +523,7 @@ export interface Shades {
   };
 
   export const yellowDark: Color = {
-    "100": "#202009",
+    "100": "#25250E",
     "200": "#373710",
     "300": "#4B4B16",
     "400": "#AEAE32",
@@ -536,7 +536,7 @@ export interface Shades {
     "1100": "#F6F6DF",
     "1200": "#FAFAEF",
     a: {
-      "100": "#F0F00010",
+      "100": "#F8F80015",
       "200": "#F6F60629",
       "300": "#F9F9223F",
       "400": "#FDFD42A9",
