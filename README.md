@@ -1,10 +1,10 @@
-# Tayer Colors
+# Pretty Ugly Colors
 
 **A not so simple color system—designed for accessibility.**
 
 ## Installation
 
-Learn how to install, import, and use at [tayer.dev/colors](https://tayer.dev/colors)
+Learn how to install, import, and use at [mid.engineering/docs/pretty-ugly-colors](https://mid.engineering/docs/pretty-ugly-colors)
 
 ## Browser Compatibility
 
