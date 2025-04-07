@@ -637,7 +637,7 @@ export interface Shades {
   };
 
   export const orangeDark: Color = {
-    "100": "#211108",
+    "100": "#23130A",
     "200": "#522B14",
     "300": "#763E1E",
     "400": "#CC6B33",
@@ -650,7 +650,7 @@ export interface Shades {
     "1100": "#F9EDE7",
     "1200": "#FDF9F7",
     a: {
-      "100": "#F2030011",
+      "100": "#F7200013",
       "200": "#F96C1947",
       "300": "#FB792E6D",
       "400": "#FE833CC9",
